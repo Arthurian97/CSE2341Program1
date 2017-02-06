@@ -31,14 +31,14 @@ class String{
 		strcpy(charArray, myString.c_str());
 	}
 
-        String& operator= (const char*){
+/*        String& operator= (const char*){
         String& operator= (const String&);
         String operator+ (const String&);
         bool operator== (const char*);
         bool operator== (const String&);
         bool operator> (const String&);
         char& operator[] (const int);
-
+*/
         int size() const{
 		return length;
 	}
@@ -47,10 +47,10 @@ class String{
 		memcpy(subArray, charArray+start, end-start);
 		subArray[end-start]='\0';
 		String *subString=new String(subArray);
-		for (int i=start;i<end;i++){
+/*		for (int i=start;i<end;i++){
 			subArray[i]=charArray[i];
 		}
-		return *subString;
+*/		return *subString;
 	}
 	char* c_str() const{
 		char *cString=new char[length];
