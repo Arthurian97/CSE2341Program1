@@ -92,12 +92,14 @@ main(int argc, char* argv[]){
 	}
 	//print matches
 	
+	ofstream newfile;
+	newfile.open(filename[3].c_str());
 	if (verbosity=="vhigh"){
 		for (int k=0;k<2;k++){
 			for (int i=0;i<11;i++){
 				for (int j=0;j<11;j++){
 					if (match[k].tags[i][j]!=0){
-						cout<<team[k].members[i]<<" tagged "<<team[1-k].members[j]<<" for "<<match[k].tags[i][j]<<endl;
+						newfile<<team[k].members[i]<<" tagged "<<team[1-k].members[j]<<" for "<<match[k].tags[i][j]<<endl;
 					}
 				}
 			}
@@ -105,23 +107,23 @@ main(int argc, char* argv[]){
 	}
 	if (verbosity=="vmid" || verbosity=="vhigh"){
 		for (int k=0;k<2;k++){
-			cout<<team[k].name<<":"<<endl;
+			newfile<<team[k].name<<":"<<endl;
 			for (int i=0;i<11;i++){
-				cout<<team[k].members[i]<<" tagged "<<match[k].tags[i][0]<<endl;
+				newfile<<team[k].members[i]<<" tagged "<<match[k].tags[i][0]<<endl;
 			}
-			cout<<"Best Player: "<<team[k].members[match[k].getMostPointPlayer()]<<endl;
+			newfile<<"Best Player: "<<team[k].members[match[k].getMostPointPlayer()]<<endl;
 		}
 	}
 	if (verbosity=="vlow" || verbosity=="vmid" || verbosity=="vhigh"){
 		for (int k=0;k<2;k++){
-			cout<<team[k].name<<": "<<match[k].points[0][0]<<endl;
+			newfile<<team[k].name<<": "<<match[k].points[0][0]<<endl;
 		}
 		if (match[0].points[0][0]>match[1].points[0][0]){
-			cout<<"Winner: "<<team[0].name<<endl;
+			newfile<<"Winner: "<<team[0].name<<endl;
 		} else if (match[0].points[0][0]<match[1].points[0][0]){
-			cout<<"Winner: "<<team[1].name<<endl;
+			newfile<<"Winner: "<<team[1].name<<endl;
 		} else {
-			cout<<"Draw"<<endl;
+			newfile<<"Draw"<<endl;
 		}
 	}
 	//write files
